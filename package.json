@@ -1,0 +1,26 @@
+{
+  "name": "react-store-manager",
+  "version": "1.0.0",
+  "description": "A simple persistent store management library for react applications ",
+  "main": "StoreManager.js",
+  "directories": {
+    "example": "example"
+  },
+  "dependencies": {
+    "forerunnerdb": "^2.0.22",
+    "pullstate": "^1.22.1"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "react",
+    "store",
+    "persistent",
+    "store",
+    "pullstate",
+    "state"
+  ],
+  "author": "Anthony Adeniyi",
+  "license": "MIT"
+}
