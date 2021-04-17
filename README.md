@@ -16,4 +16,3 @@ $  npm install react-store-manager -save
 
 I welcome contributions with love 😄😄🌺🌺🎆🎆
 
-## MIT License
