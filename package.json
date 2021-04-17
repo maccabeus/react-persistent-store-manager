@@ -6,6 +6,10 @@
   "directories": {
     "example": "example"
   },
+  "dependencies": {
+    "forerunnerdb": "^2.0.22",
+    "pullstate": "^1.22.1"
+  },
   "scripts": {
     "test": "test"
   },
