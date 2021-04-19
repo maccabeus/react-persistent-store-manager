@@ -1,6 +1,6 @@
 {
   "name": "react-persistent-store-manager",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A simple persistent store management library for react applications ",
   "main": "StoreManager.js",
   "directories": {
