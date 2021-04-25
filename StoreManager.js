@@ -1,6 +1,39 @@
 import React, { useState } from "react";
-import { AppStore, Stores } from "./Store";
 import localforage from "localforage";
+import {Store as pullStateStore} from "pullstate";
+
+/**
+ * This track the AppStore provide when `StoreManager` is initialized
+ * This export is always created with our `Store` method of `StoreManager`
+ */
+let AppStore ={};
+
+/**
+ * This is an object containing all the store value to  used in creating our store
+ * Normally, this value will be exported from our store creation file
+ * For example, this definition will look like this:
+ * UserStore:{    
+        name: null,
+        email: null,
+        userType: null
+        },
+    AppSettingsStore: {
+        measurements: [],
+        userTypes: []
+    }
+ *
+ */
+let Stores ={};
+
+/**
+ * Use this to create a new store 
+ * The `stores` should be created in this format described in `Stores` variable above
+ * @param {*} stores 
+ * @returns 
+ */
+export const Store=(stores ) => new pullStateStore({
+    ...stores
+});
 
 /**
  * we will re-implement the Store functionality to make data persistent if page is refreshed
@@ -9,20 +42,21 @@ import localforage from "localforage";
  * and while retrieving store data, if not found, we will check the local storage
  *
  **/
-export const StoreManager = (store) => {
+export const StoreManager = (AppStore , Stores, storeLocation) => {
     /** create a private variable to keep track of store name */
-    let storeName = store;
+    let storeName = storeLocation;
 
     /** create some placeholder methods to return if store is not available
      * this will prevent error when user call store method and the store is not available
      */
-    const placeHolderMethods={update:()=>null, useState: ()=>null};
+    const placeHolderMethods={update:()=>null, useState: ()=>null, useStateAsync: async()=>null};
 
     if (!Stores[storeName]) {
+        const msg=`No store define for ${storeName}. Please define store first`;
         alert(
-            `No store define for ${storeName}. Please define store first in "Stores" in "Store" file`
+            msg
         );
-        console.error(`No store define for ${storeName}. Please define store first in "Stores" in "Store" file`);
+        console.error(msg);
         return placeHolderMethods;
     }
     /**
@@ -57,7 +91,7 @@ export const StoreManager = (store) => {
 
             if (curStoreValue) return curStoreValue;
 
-            /**if curStoreValue is empty, we will check the localforage to check
+            /**if curStoreValue is empty, we will check the localforage to see
              * if this value exist before the page was refreshed.
              * traditionally, Store return empty once te page is refreshed
              * so to make it persistent, we will always save value to local database
