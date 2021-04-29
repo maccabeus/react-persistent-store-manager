@@ -19,7 +19,7 @@ To create a New Store
 
 from version 1.1.0, you must create a store  and pass it to `StoreManager` to read saved values
 
-Create a `store.js` file or you can call it any name and do create your store like this. You can  use 
+Create a `store.js` file or you can call it any name like. You can  use 
 more than one store file within your application.
 
 See below on how to create a new `store.js` file:
@@ -107,3 +107,4 @@ To run the code
 ## Contributions
 
 I welcome contributions with love 😄😄🌺🌺🎆🎆
+
